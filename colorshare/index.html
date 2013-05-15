@@ -16,18 +16,25 @@
                 hash = window.location.hash;
 
                 messageBox = document.getElementById("messageBox");
+                greetingBox = document.getElementById("greetingBox");
                 colorCode = document.getElementById("colorCode");
                 body = document.getElementById("body");
 
-                if (!validate(hash)) {
-                    messageBox.style.display = "block";
-                    colorCode.innerHTML = "";
-                    body.style.background = "#FFFFFF";
+                if (hash) {
+                    greetingBox.style.display = "none";
+                    if (!validate(hash)) {
+                        messageBox.style.display = "block";
+                        colorCode.innerHTML = "";
+                        body.style.background = "#FFFFFF";
+                    } else {
+                        messageBox.style.display = "none";
+                        colorCode.innerHTML = hash;
+                        body.style.background = hash;
+                    }
                 } else {
                     messageBox.style.display = "none";
-                    colorCode.innerHTML = hash;
-                    body.style.background = hash;
-                }
+                    greetingBox.style.display = "block";
+                }                    
             }
 
             window.addEventListener("load", setBgColor);
@@ -36,13 +43,15 @@
         <style>
             #colorCode {
                 position: absolute;
-                bottom: 10px;
-                left: 12px;
+                bottom: 11px;
+                left: 11px;
                 color: #FFFFFF;
             }
-            #messageBox {
-                width: 200px;
-                margin: 80px auto;
+            #messageBox,#greetingBox {
+                display: none;
+                text-align: center;
+                width: 600px;
+                margin: 120px auto;
                 color: #444444;
             }
         </style>
@@ -51,5 +60,6 @@
     <body id="body">
         <div id="colorCode"></div>
         <div id="messageBox">The color code is invalid.</div>
+        <div id="greetingBox">Append a color code (like #330011) to the URL and press Enter.</div>
     </body>
 </html>
