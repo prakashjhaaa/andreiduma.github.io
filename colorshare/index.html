@@ -4,9 +4,52 @@
         <title>
             ColorShare - Easily view and share colors
         </title>
+        <script type="text/javascript">
+            function validate(hash) {
+                var pattern3 = new RegExp("^#[0-9a-fA-F]{3}$");
+                var pattern6 = new RegExp("^#[0-9a-fA-F]{6}$");
+
+                return pattern3.test(hash) || pattern6.test(hash);
+            }
+
+            function setBgColor() {
+                hash = window.location.hash;
+
+                messageBox = document.getElementById("messageBox");
+                colorCode = document.getElementById("colorCode");
+                body = document.getElementById("body");
+
+                if (!validate(hash)) {
+                    messageBox.style.display = "block";
+                    colorCode.innerHTML = "";
+                    body.style.background = "#FFFFFF";
+                } else {
+                    messageBox.style.display = "none";
+                    colorCode.innerHTML = hash;
+                    body.style.background = hash;
+                }
+            }
+
+            window.addEventListener("load", setBgColor);
+            window.addEventListener("hashchange", setBgColor);
+        </script>
+        <style>
+            #colorCode {
+                position: absolute;
+                bottom: 10px;
+                left: 12px;
+                color: #FFFFFF;
+            }
+            #messageBox {
+                width: 200px;
+                margin: 80px auto;
+                color: #444444;
+            }
+        </style>
     </head>
 
-    <body>
-        <div id="color_code"></div>
+    <body id="body">
+        <div id="colorCode"></div>
+        <div id="messageBox">The color code is invalid.</div>
     </body>
 </html>
