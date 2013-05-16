@@ -56,12 +56,24 @@
                 margin: 120px auto;
                 color: #444444;
             }
+            #example {
+                font-size: 12px;
+            }
+            a,a:visited {
+                color: #000000;
+            }
+            a {
+                text-decoration: none;
+            }
         </style>
     </head>
 
     <body id="body">
         <div id="colorCode"></div>
         <div id="messageBox">The color code is invalid.</div>
-        <div id="greetingBox">Append a color code (like #330011) to the URL and press Enter.</div>
+        <div id="greetingBox">
+            <p>Append a color code (like #2378FE) to the URL and press Enter.</p>
+            <p id="example">Example: <a href="#2378FE">andreiduma.ro/color/#2378FE</a></p>
+        </div>
     </body>
 </html>
