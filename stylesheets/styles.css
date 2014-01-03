@@ -227,7 +227,7 @@ footer {
     padding:0;
   }
   
-  header ul, header p.view {
+  header ul, header h2.view {
     position:static;
   }
   
